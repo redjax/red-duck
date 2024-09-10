@@ -1,9 +1,11 @@
+from __future__ import annotations
+
 import logging
+
 log = logging.getLogger(__name__)
 
 import nox
 from nox_utils import PY_VERSIONS
-
 
 @nox.session(python=PY_VERSIONS, name="pre-commit-all", tags=["repo", "pre-commit"])
 def run_pre_commit_all(session: nox.Session):
