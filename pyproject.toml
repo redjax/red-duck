@@ -1,8 +1,8 @@
 [project]
 name = "red-duck"
 version = "0.1.0"
-description = "Default template for PDM package"
-authors = [{ name = "redjax", email = "none@none.com" }]
+description = "Utilities for interacting with a DuckDB database."
+authors = [{ name = "redjax", email = "pypi@redjax.33mail.com" }]
 dependencies = ["duckdb>=1.1.0", "pandas>=2.2.2", "pyarrow>=17.0.0"]
 requires-python = ">=3.11"
 readme = "README.md"
@@ -11,6 +11,11 @@ license = { text = "MIT" }
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
+
+[project.urls]
+Repository = "https://github.com/redjax/red-duck"
+# Documentation = "https://red-duck.readthedocs.io/en/latest/"
+Download = "https://pypi.org/project/red-duck/"
 
 
 [tool.pdm]
@@ -22,6 +27,13 @@ dev = ["ruff>=0.6.4", "pytest-xdist>=3.6.1", "nox>=2024.4.15", "uv>=0.4.8"]
 [tool.ruff]
 target-version = "py311"
 line-length = 88
+
+[tool.pdm.scripts]
+create-major-release = { shell = "pdm bump major && pdm bump tag && pdm lock && pdm build && git push --tags" }
+create-minor-release = { shell = "pdm bump minor && pdm bump tag && pdm lock && pdm build && git push --tags" }
+create-micro-release = { shell = "pdm bump micro && pdm bump tag && pdm lock && pdm build && git push --tags" }
+upload-pypi = { shell = "pdm publish --repository pypi --verbose" }
+upload-pypi-test = { shell = "pdm publish --repository testpypi --verbose" }
 
 [tool.ruff.lint]
 select = [

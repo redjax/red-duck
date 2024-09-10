@@ -30,8 +30,8 @@ nox.options.error_on_missing_interpreters = False
 # nox.options.report = True
 
 
-import nox_utils as nox_utils
 import nox_codecheck_sessions as codecheck_sessions
+import nox_utils as nox_utils
 
 nox_utils.setup_nox_logging()
 
