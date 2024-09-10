@@ -20,3 +20,10 @@ def run_pre_commit_autoupdate(session: nox.Session):
 
     log.info("Running pre-commit autoupdate")
     session.run("pre-commit", "autoupdate")
+    
+@nox.session(python=PY_VERSIONS, name="pre-commit-nbstripout", tags=["repo", "pre-commit"])
+def run_pre_commit_nbstripout(session: nox.Session):
+    session.install(f"pre-commit")
+
+    log.info("Running nbstripout pre-commit hook")
+    session.run("pre-commit", "run", "nbstripout")

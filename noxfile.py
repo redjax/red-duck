@@ -32,6 +32,7 @@ nox.options.error_on_missing_interpreters = False
 
 import nox_codecheck_sessions as codecheck_sessions
 import nox_utils as nox_utils
+import nox_precommit_sessions as precommit_sessions
 
 nox_utils.setup_nox_logging()
 
