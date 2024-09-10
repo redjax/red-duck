@@ -61,8 +61,6 @@ class DuckDBController(AbstractContextManager):
     ) -> None:
         self.connection_str: str = connection_str
         self.read_only: bool = read_only
-        ## DuckDB configuration option docs:
-        #  https://duckdb.org/docs/configuration/overview.html#configuration-reference
         self.config: dict | None = config
 
         ## DuckDB connection
