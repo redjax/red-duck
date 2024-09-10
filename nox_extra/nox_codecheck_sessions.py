@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import logging
 
 log = logging.getLogger(__name__)
 
-from nox_utils import DEFAULT_PYTHON
-
 import nox
+from nox_utils import DEFAULT_PYTHON
 
 PROJECT_NAME: str = "red_duck"
 
