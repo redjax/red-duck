@@ -376,3 +376,21 @@ def export_requirements(
         f"{REQUIREMENTS_OUTPUT_DIR}/requirements.dev.txt",
         "--without-hashes",
     )
+
+@nox.session(python=PY_VERSIONS, name="tests", tags=["test"])
+@nox.parametrize("pdm_ver", [PDM_VER])
+def run_tests(session: nox.Session, pdm_ver: str):
+    session.install(f"pdm>={pdm_ver}")
+    session.run("pdm", "install")
+
+    log.info("Running Pytest tests")
+    session.run(
+        "pdm",
+        "run",
+        "pytest",
+        "-n",
+        "auto",
+        "--tb=auto",
+        "-v",
+        "-rsXxfP",
+    )
