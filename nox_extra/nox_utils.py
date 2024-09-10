@@ -72,7 +72,7 @@ PDM_VER: str = "2.18.1"
 #  Add new paths with nox_utils.append_lint_paths(extra_paths=["..."],)
 DEFAULT_LINT_PATHS: list[str] = ["src", "tests"]
 ## Set directory for requirements.txt file output
-REQUIREMENTS_OUTPUT_DIR: Path = Path("./requirements")
+REQUIREMENTS_OUTPUT_DIR: Path = Path(".").absolute()
 
 
 @contextmanager

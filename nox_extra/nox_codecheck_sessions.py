@@ -6,6 +6,8 @@ from nox_utils import DEFAULT_PYTHON
 
 import nox
 
+PROJECT_NAME: str = "red_duck"
+
 
 @nox.session(python=[DEFAULT_PYTHON], name="vulture-check", tags=["quality"])
 def run_vulture_check(session: nox.Session):
@@ -13,7 +15,7 @@ def run_vulture_check(session: nox.Session):
 
     log.info("Checking for dead code with vulture")
     try:
-        session.run("vulture", "src/red_duck", "--min-confidence", "100")
+        session.run("vulture", f"src/{PROJECT_NAME}", "--min-confidence", "100")
     except Exception as exc:
         log.info(
             f"\nNote: For some reason, this always 'fails' with exit code 3. Vulture still works when running in a Nox session, it seems this error can be ignored."
@@ -26,7 +28,7 @@ def run_bandit_check(session: nox.Session):
 
     log.info("Checking code security with bandit")
     try:
-        session.run("bandit", "-r", "src/red_duck")
+        session.run("bandit", "-r", f"src/{PROJECT_NAME}")
     except Exception as exc:
         log.warning(
             f"\nNote: For some reason, this always 'fails' with exit code 1. Bandit still works when running in a Nox session, it seems this error can be ignored."
@@ -40,7 +42,13 @@ def run_bandit_baseline(session: nox.Session):
     log.info("Getting bandit baseline")
     try:
         session.run(
-            "bandit", "-r", "src/red_duck", "-f", "json", "-o", "bandit_baseline.json"
+            "bandit",
+            "-r",
+            f"src/{PROJECT_NAME}",
+            "-f",
+            "json",
+            "-o",
+            "bandit_baseline.json",
         )
     except Exception as exc:
         log.warning(
@@ -64,7 +72,7 @@ def radon_code_complexity(session: nox.Session):
     session.run(
         "radon",
         "cc",
-        "src/red_duck",
+        f"src/{PROJECT_NAME}",
         "-s",
         "-a",
         "--total-average",
@@ -83,7 +91,7 @@ def radon_raw(session: nox.Session):
     session.run(
         "radon",
         "raw",
-        "src/red_duck",
+        f"src/{PROJECT_NAME}",
         "-s",
         # "-j",
         # "-O",
@@ -99,7 +107,7 @@ def radon_maintainability(session: nox.Session):
     session.run(
         "radon",
         "mi",
-        "src/red_duck",
+        f"src/{PROJECT_NAME}",
         "-n",
         "C",
         "-x",
@@ -134,7 +142,7 @@ def xenon_scan(session: nox.Session):
 
     log.info("Scanning complexity with xenon")
     try:
-        session.run("xenon", "-b", "B", "-m", "C", "-a", "C", "src/red_duck")
+        session.run("xenon", "-b", "B", "-m", "C", "-a", "C", f"src/{PROJECT_NAME}")
     except Exception as exc:
         log.warning(
             f"\nNote: For some reason, this always 'fails' with exit code 1. Xenon still works when running in a Nox session, it seems this error can be ignored."
