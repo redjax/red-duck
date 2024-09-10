@@ -1,0 +1,11 @@
+repos:
+
+- repo: https://gitlab.com/vojko.pribudic/pre-commit-update
+  rev: v0.3.1
+  hooks:
+    - id: pre-commit-update
+
+- repo: https://github.com/kynan/nbstripout
+  rev: 0.7.1
+  hooks:
+    - id: nbstripout
