@@ -1,28 +1,13 @@
 [project]
 name = "red-duck"
 version = "0.1.0"
-description = "Utilities for interacting with a DuckDB database."
-authors = [{ name = "redjax", email = "pypi@redjax.33mail.com" }]
-dependencies = ["duckdb>=1.1.0", "pandas>=2.2.2", "pyarrow>=17.0.0"]
-requires-python = ">=3.11"
+description = "Add your description here"
 readme = "README.md"
-license = { text = "MIT" }
+requires-python = ">=3.12"
+dependencies = ["duckdb>=1.2.1", "pandas>=2.2.3", "pyarrow>=19.0.1"]
 
-[build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
-
-[project.urls]
-Repository = "https://github.com/redjax/red-duck"
-# Documentation = "https://red-duck.readthedocs.io/en/latest/"
-Download = "https://pypi.org/project/red-duck/"
-
-
-[tool.pdm]
-distribution = true
-
-[tool.pdm.dev-dependencies]
-dev = ["ruff>=0.6.4", "pytest-xdist>=3.6.1", "nox>=2024.4.15", "uv>=0.4.8"]
+[dependency-groups]
+dev = ["nox>=2025.2.9", "pytest-xdist>=3.6.1", "ruff>=0.9.10", "uv>=0.6.6"]
 
 [tool.ruff]
 target-version = "py311"
